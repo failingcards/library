@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    font-family: Roboto, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Poppins, Roboto, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding: 0;
     margin: 0;
 }
@@ -36,9 +36,9 @@ body {
 
 .title {
     font-size: 2.5rem;
-    font-weight: 300;
+    font-weight: 600;
     color: #333;
-    text-align: center;
+    padding-left: 20vw
 }
 
 .icon-btn {
