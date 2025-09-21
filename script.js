@@ -19,11 +19,16 @@ function displayBooks() {
 
     myLibrary.forEach(book => {
         const bookElement = document.createElement("div");
+        bookElement.setAttribute("data-book-id", book.id);
         bookElement.innerHTML = `
             <h3>${book.name}</h3>
             <p>Author: ${book.author}</p>
             <p>Pages: ${book.pages}</p>
             <p>Read: ${book.read ? "Yes" : "No"}</p>
+            <button class="remove-btn" data-book-id="${book.id}">Remove</button>
+            <button class="toggle-read-btn" data-book-id="${book.id}">
+                ${book.read ? "Mark as Unread" : "Mark as Read"}
+            </button>
         `
         container.appendChild(bookElement);
     })
@@ -55,3 +60,23 @@ document.getElementById("book-form").addEventListener("submit", function(event) 
     document.getElementById("book-form-dialog").close();
     document.getElementById("book-form").reset();
 });
+
+document.getElementById("book-container").addEventListener("click", function(event) {
+    if (event.target.classList.contains("remove-btn")) {
+        const bookID = event.target.getAttribute("data-book-id");
+        const bookIndex = myLibrary.findIndex(book => book.id === bookID);
+        myLibrary.splice(bookIndex, 1);
+        displayBooks();
+    }
+
+    if (event.target.classList.contains("toggle-read-btn")) {
+        const bookID = event.target.getAttribute("data-book-id");
+        const book = myLibrary.find(book => book.id === bookID);
+        book.toggleReadStatus();
+        displayBooks();
+    }
+});
+
+Book.prototype.toggleReadStatus = function() {
+    this.read = !this.read;
+};
