@@ -11,11 +11,13 @@ function Book(name, author, pages, read) {
 function addBookToLibrary(name, author, pages, read) {
     const newBook = new Book(name, author, pages, read);
     myLibrary.push(newBook);
+    saveToLocalStorage();
 }
 
-addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, true);
-addBookToLibrary("1984", "George Orwell", 328, false);
-addBookToLibrary("Dune", "Frank Herbert", 688, true);
+const storedBooks = loadFromLocalStorage()
+if (storedBooks.length > 0) {
+    myLibrary.push(...storedBooks);
+}
 
 function displayBooks() {
     const container = document.getElementById("book-container");
@@ -71,6 +73,7 @@ document.getElementById("book-container").addEventListener("click", function(eve
         const bookID = event.target.getAttribute("data-book-id");
         const bookIndex = myLibrary.findIndex(book => book.id === bookID);
         myLibrary.splice(bookIndex, 1);
+        saveToLocalStorage();
         displayBooks();
     }
 
@@ -78,6 +81,7 @@ document.getElementById("book-container").addEventListener("click", function(eve
         const bookID = event.target.getAttribute("data-book-id");
         const book = myLibrary.find(book => book.id === bookID);
         book.toggleReadStatus();
+        saveToLocalStorage();
         displayBooks();
     }
 });
@@ -85,3 +89,16 @@ document.getElementById("book-container").addEventListener("click", function(eve
 Book.prototype.toggleReadStatus = function() {
     this.read = !this.read;
 };
+
+function saveToLocalStorage() {
+    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+}
+
+function loadFromLocalStorage() {
+    const stored = localStorage.getItem("myLibrary");
+    if (stored) {
+        return JSON.parse(stored);
+    }
+
+    return [];
+}
