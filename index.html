@@ -10,25 +10,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1 class="title">Library</h1>
-    <button id="add-book">
-        <span class="iconify" data-icon="mdi-plus"></span>
-        Add Book
-    </button>
-    <dialog id="book-form-dialog">
-        <form action="#" id="book-form">
-            <h2>Add New Book</h2>
-            <input type="text" name="book-title" id="book-title" placeholder="Book Title" required>
-            <input type="text" name="book-author" id="book-author" placeholder="Author" required>
-            <input type="number" name="book-pages" id="book-pages" placeholder="Number of Pages" required>
-            <label for="book-read">
-                <input type="checkbox" name="book-read" id="book-read"> I have read this book
-            </label>
-            <button type="submit">Add Book</button>
-            <button type="button" id="cancel-btn">Cancel</button>
-        </form>
-    </dialog>
-    <div id="book-container"></div>
+    <header class="heading">
+        <h1 class="title">Library</h1>
+    </header>
+    <div class="main-content">
+        <button id="add-book">
+            <span class="iconify icon-btn" data-icon="mdi-plus"></span>
+            Add Book
+        </button>
+        <dialog id="book-form-dialog">
+            <form action="#" id="book-form">
+                <h2>Add New Book</h2>
+                <input type="text" name="book-title" id="book-title" placeholder="Book Title" required>
+                <input type="text" name="book-author" id="book-author" placeholder="Author" required>
+                <input type="number" name="book-pages" id="book-pages" placeholder="Number of Pages" required>
+                <label for="book-read">
+                    <input type="checkbox" name="book-read" id="book-read"> I have read this book
+                </label>
+                <button type="submit">Add Book</button>
+                <button type="button" id="cancel-btn">Cancel</button>
+            </form>
+        </dialog>
+        <div id="book-container"></div>
+    </div>
 </body>
 <script src="./script.js"></script>
 <script src="//code.iconify.design/1/1.0.6/iconify.min.js"></script>
