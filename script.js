@@ -13,12 +13,17 @@ function addBookToLibrary(name, author, pages, read) {
     myLibrary.push(newBook);
 }
 
+addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, true);
+addBookToLibrary("1984", "George Orwell", 328, false);
+addBookToLibrary("Dune", "Frank Herbert", 688, true);
+
 function displayBooks() {
     const container = document.getElementById("book-container");
     container.innerHTML = "";
 
     myLibrary.forEach(book => {
         const bookElement = document.createElement("div");
+        bookElement.className = "book-card";
         bookElement.setAttribute("data-book-id", book.id);
         bookElement.innerHTML = `
             <h3>${book.name}</h3>
